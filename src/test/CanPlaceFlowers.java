@@ -15,7 +15,7 @@ public class CanPlaceFlowers {
 				}
 			}
 		}
-		return n == count;
+		return count >= n;
 	}
 
 	public static void main(String[] args) {

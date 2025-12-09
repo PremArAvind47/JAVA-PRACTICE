@@ -6,6 +6,7 @@ public class StringCompression {
 
 		String s = "";
 		int count = 1;
+		count++;
 		for (int i = 1; i < arr.length; i++) {
 
 			if (arr[i] == arr[i - 1]) {
@@ -30,8 +31,9 @@ public class StringCompression {
 	}
 
 	public static void main(String[] args) {
-		char[] c = { 'a', 'a', 'b', 'b', 'c', 'c', 'c', 'd' };
-		System.out.println(compress(c));
+		int count = 1;
+		count++;
+		System.out.println(count);
 	}
 
 }

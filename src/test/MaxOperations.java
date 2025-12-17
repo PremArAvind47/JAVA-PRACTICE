@@ -1,24 +1,26 @@
 package test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MaxOperations {
 	public static int maxOperations(int[] nums, int k) {
+		Map<Integer, Integer> map = new HashMap<>();
 		int count = 0;
-		boolean[] used = new boolean[nums.length];
-		for (int i = 0; i < nums.length; i++) {
-			if (used[i])
-				continue;
-			for (int j = 1; j < nums.length; j++) {
-				if (used[j])
-					continue;
-				int val = nums[i] + nums[j];
-				if (k == val) {
-					count++;
-					used[i] = true;
-					used[j] = true;
-				}
+
+		for (int num : nums) {
+		    int need = k - num;
+
+			if(map.getOrDefault(need,0) > 0) {
+				count++;
+				map.put(need, map.get(need)-1);
+			}else {
+				  map.put(num, map.getOrDefault(num, 0) + 1); // ✅ FIX
+
 			}
 		}
 		return count;
+
 	}
 
 	public static void main(String[] args) {

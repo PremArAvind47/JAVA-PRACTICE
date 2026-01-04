@@ -66,10 +66,11 @@ public class CloseStrings {
 		Collections.sort(list111);
 		System.out.println(list111);
 		System.out.println(list111);
-		if (!list111.equals(list111)) {
-			return false;
-		}
-		return true;
+		Collections.sort(list11);
+		Collections.sort(list111);
+
+		return list11.equals(list111);
+	
 			
 
 	}

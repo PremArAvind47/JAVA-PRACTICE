@@ -1,28 +1,31 @@
-package test;
+import java.io.*;
 
-public class Main {
+class UpperFilterReader extends FilterReader {
 
-    public static void main(String[] args) {
-        String text = "abc";
-        permute(text, "");
+    UpperFilterReader(Reader in) {
+        super(in);
     }
 
-    static void permute(String remaining, String result) {
+    public int read() throws IOException {
+        int ch = super.read(); // read from FileReader
+        if (ch == -1) return ch;
 
-        if (remaining.length() == 0) {
-            System.out.println(result);
-            return;
+        return Character.toUpperCase((char) ch);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+        Reader file = new FileReader("data.txt");
+
+        UpperFilterReader filter = new UpperFilterReader(file);
+
+        int ch;
+        while ((ch = filter.read()) != -1) {
+            System.out.print((char) ch);
         }
 
-        for (int i = 0; i < remaining.length(); i++) {
-
-            char ch = remaining.charAt(i);
-
-            String newRemaining =
-                    remaining.substring(0, i) +
-                    remaining.substring(i + 1);
-
-            permute(newRemaining, result + ch);
-        }
+        filter.close();
     }
 }

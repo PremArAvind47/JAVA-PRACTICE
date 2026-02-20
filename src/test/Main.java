@@ -1,3 +1,5 @@
+package test;
+
 import java.io.*;
 
 class UpperFilterReader extends FilterReader {

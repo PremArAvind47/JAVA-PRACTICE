@@ -1,22 +1,24 @@
 package test;
 
-import java.net.*;
-import java.io.*;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    static void printCurrency(Locale locale) {
 
-        URL url = new URL("https://example.com");
+        NumberFormat nf =
+            NumberFormat.getCurrencyInstance(locale);
 
-        URLConnection con = url.openConnection();
+        System.out.println(nf.format(10500.32));
+    }
 
-        InputStream in = con.getInputStream();
+    public static void main(String[] args) {
 
-        int data;
+        printCurrency(Locale.US);
 
-        while((data = in.read()) != -1) {
-            System.out.print((char)data);
-        }
+        printCurrency(Locale.UK);
+
+        printCurrency(Locale.FRANCE);
     }
 }

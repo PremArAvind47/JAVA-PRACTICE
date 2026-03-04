@@ -1,24 +1,17 @@
 package test;
 
-import java.text.NumberFormat;
-import java.util.Locale;
+@FunctionalInterface
+interface MyInterface {
+	void show(String name);
+	void showf(String name);
+}
 
 public class Main {
 
-    static void printCurrency(Locale locale) {
+	public static void main(String args[]) {
 
-        NumberFormat nf =
-            NumberFormat.getCurrencyInstance(locale);
+		MyInterface obj = (name) -> System.out.println("Hello "+name);
 
-        System.out.println(nf.format(10500.32));
-    }
-
-    public static void main(String[] args) {
-
-        printCurrency(Locale.US);
-
-        printCurrency(Locale.UK);
-
-        printCurrency(Locale.FRANCE);
-    }
+		obj.show("Prem");
+	}
 }

@@ -1,33 +1,47 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-interface lamdaa {
-	int s(List<Integer> x);
-}
-
 public class Main {
 
-	public static void main(String[] args) {
+	static class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
 
-		List<Integer> l = Arrays.asList(11, 4, 3, 6757, 6787, 686, 2);
-		List<Integer> l2 = Arrays.asList(11, 4, 3, 6757, 6787, 686, 2);
-		List<Integer> ll = new ArrayList<>();
-		// l.stream().filter((x)-> x%2 ==0).forEachOrdered((x)-> System.out.println(x));
-		lamdaa ss = (x) -> {
+		TreeNode(int val) {
+			this.val = val;
+		}
+	}
 
-			for (Integer g : x) {
+	public static int countNodes(TreeNode node) {
+		
+		if(node == null) {
+			return 1;
+		}
+	
+		int left =  countNodes(node.left);
+		 int right = countNodes(node.right);
+		 return left + right;
+			
+	}
 
-				if (g % 2 == 0) {
-					ll.add(g);
-				}
+	public static void main(String args[]) {
 
-			}
-			return ll.size();
-		};
-		;
-		System.out.println(ss.s(l));
+//        1
+//      /   \
+//     2     3	          
+//    / \      \  
+//   4   5      6
+   
+		TreeNode root = new TreeNode(1);
+
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		root.right.right = new TreeNode(6);
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+
+	 
+	  	System.out.println(countNodes(root));
+
 	}
 }

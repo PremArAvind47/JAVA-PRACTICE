@@ -18,23 +18,28 @@ public class RomanToInteger {
 		map.put('M', 1000);
 
 		for (int i = 0; i < s.length(); i++) {
-			Integer mapp = map.get(s.charAt(0));
+			Integer mapp = map.get(s.charAt(i));
 			if (first == 0) {
 				first = mapp;
 			} else {
 				second = mapp;
-				
-				if(first > second) {
-					num = first;
-				}else {
+
+				if (first >= second) {
+					num = num + first;
+					first = second;
+
+				} else {
+					int numm = second - first;
+					 num = num + numm;
+					first = 0;
 					
 				}
-				first = 0;
+				second = 0;
 			}
 
 		}
-
-		return 0;
+		num = num + first;   // important
+		return num;
 	}
 
 	public static void main(String[] args) {

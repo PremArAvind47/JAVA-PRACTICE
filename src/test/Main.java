@@ -1,44 +1,68 @@
 package test;
 
-class BTreeNode {
-    int[] keys;          // store values
-    BTreeNode[] children; // child nodes
-    int count;           // number of values
+import java.util.*;
 
-    BTreeNode(int size) {
-        keys = new int[size];
-        children = new BTreeNode[size + 1];
-        count = 0;
+// Comparable (default sorting by id)
+class User implements Comparable<User> {
+    int id;
+    String name;
+
+    User(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    // Default sorting (by id)
+    public int compareTo(User u) {
+        return this.id - u.id;
+    }
+}
+
+// Comparator for sorting by name
+class UserNameComparator implements Comparator<User> {
+    public int compare(User a, User b) {
+        return a.name.compareTo(b.name);
+    }
+}
+
+// Comparator for sorting by id (custom)
+class UserIdComparator implements Comparator<User> {
+    public int compare(User a, User b) {
+        return a.id - b.id;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
 
-        // root node
-        BTreeNode root = new BTreeNode(3);
-        root.keys[0] = 20;
-        root.count = 1;
+        List<User> list = new ArrayList<>();
+        list.add(new User(2, "B"));
+        list.add(new User(1, "A"));
+        list.add(new User(3, "C"));
 
-        // left child
-        BTreeNode left = new BTreeNode(3);
-        left.keys[0] = 10;
-        left.keys[1] = 15;
-        left.count = 2;
+        // 🔹 1. Default sorting using Comparable (by id)
+        Collections.sort(list);
+        System.out.println("Sort by id (Comparable):");
+        for (User u : list) {
+            System.out.println(u.id + " " + u.name);
+        }
 
-        // right child
-        BTreeNode right = new BTreeNode(3);
-        right.keys[0] = 25;
-        right.keys[1] = 30;
-        right.count = 2;
+        System.out.println("------");
 
-        // connect children
-        root.children[0] = left;
-        root.children[1] = right;
+        // 🔹 2. Custom sorting using Comparator (by name)
+        Collections.sort(list, new UserNameComparator());
+        System.out.println("Sort by name (Comparator):");
+        for (User u : list) {
+            System.out.println(u.id + " " + u.name);
+        }
 
-        // print
-        System.out.println("Root: " + root.keys[0]);
-        System.out.println("Left: " + left.keys[0] + " " + left.keys[1]);
-        System.out.println("Right: " + right.keys[0] + " " + right.keys[1]);
+        System.out.println("------");
+
+        // 🔹 3. Another custom sorting (by id again using Comparator)
+        Collections.sort(list, new UserIdComparator());
+        System.out.println("Sort by id (Comparator):");
+        for (User u : list) {
+            System.out.println(u.id + " " + u.name);
+        }
     }
 }

@@ -1,30 +1,28 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class LengthOfLastWord {
 	public static int lengthOfLastWord(String s) {
-		String[] ss = s.split(" ");
-		String k = "";
-		StringBuilder sb = new StringBuilder();
-		int max = 0;
-		for (String d : ss) {
-			sb.append("," + d);
-		}
-		k = sb.toString();
-		String[] sss = k.split(",");
-		for (int i = sss.length -1; i > 0; i--) {
-          if(sss[i] != ",") {
-        	return  sss[i].length();
-        	  
-          }
-		}
-		return max;
+	    TreeSet<Integer> set = new TreeSet<>(
+	     
+
+	        set.add(1);
+	        set.add(1);
+	        set.add(3);
+
+	        System.out.println(set);
 
 	}
 
 	public static void main(String[] args) {
-		String s = "   fly me   to   the moon  ";
-		System.out.println(lengthOfLastWord(s));
-
+	
 	}
 
 }

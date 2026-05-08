@@ -1,18 +1,19 @@
 package test;
 
-class MyThread extends Thread {
-    public void run() {
-        System.out.println("Thread running...");
-    }
-}
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Queue;
 
 public class Main {
-    public static void main(String[] args) {
-        MyThread t = new MyThread();
-        t.start(); // NOT run()
-        MyThread t1 = new MyThread();
-        t1.start(); // NOT run()
-      
-    }
-    
+	public static void main(String[] args) {
+
+		Deque<Integer> q = new ArrayDeque<>();
+
+		q.offer(10);
+		q.offer(20);
+		q.offer(30);
+
+		   System.out.println(q.poll()); // 30
+	        System.out.println(q.poll()); // 20
+	}
 }
